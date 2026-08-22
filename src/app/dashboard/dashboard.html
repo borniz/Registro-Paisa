@@ -1,0 +1,36 @@
+<div class="space-y-8 animate-fade-in">
+  
+  <!-- ENCABEZADO DE SECCIÓN -->
+  <div class="border-b border-zinc-800 pb-4">
+    <div class="flex items-center space-x-2 text-[10px] font-bold text-[#ccff00] tracking-wider uppercase mb-1">
+      <span>● PANEL_PRINCIPAL</span>
+      <span class="text-zinc-600">//</span>
+      <span class="text-zinc-400">RESUMEN_GENERAL</span>
+    </div>
+    <h2 class="text-2xl font-bold tracking-tight text-white uppercase">
+      TABLERO DE CONTROL
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    @for (summary of summaries(); track summary.label) {
+      <section class="bg-[#0f1112] border border-zinc-800 p-5 relative overflow-hidden group hover:border-zinc-700 transition-colors">
+        <div class="absolute top-0 right-0 p-3 text-xl opacity-30 group-hover:opacity-100 transition-opacity">{{ summary.icon }}</div>
+        <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">BALANCE TOTAL</p>
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider mt-2">{{ summary.label }}</h3>
+        <p class="text-2xl font-bold mt-3" [class.text-emerald-400]="summary.balance >= 0" [class.text-red-400]="summary.balance < 0">
+          {{ summary.balance | currency:'COP':'symbol':'1.0-0' }}
+        </p>
+        <div class="grid grid-cols-2 gap-3 mt-5 border-t border-zinc-800 pt-3 text-[9px] uppercase">
+          <div><span class="block text-zinc-500">Ingresos</span><strong class="block text-emerald-400 mt-1">{{ summary.ingresos | currency:'COP':'symbol':'1.0-0' }}</strong></div>
+          <div><span class="block text-zinc-500">Egresos</span><strong class="block text-red-400 mt-1">{{ summary.egresos | currency:'COP':'symbol':'1.0-0' }}</strong></div>
+        </div>
+        <p class="mt-4 text-[9px] text-zinc-500 uppercase">{{ summary.records }} registros financieros</p>
+      </section>
+    }
+  </div>
+
+ 
+    
+
+</div>
